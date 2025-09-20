@@ -1,6 +1,11 @@
 from os import name
 import random
 
+'''
+The Welcome() function welcomes the user who runs the program. It'll ask
+the user for their name and age, and it'll print a message
+'''
+
 def welcome():
     print('\nHello! Welcome to Chatbot (v1.0.1)');
     global name, age; #Admitly asked ai how name and age variable get acess global
@@ -9,6 +14,8 @@ def welcome():
 
     print(f'Welcome {name} to the Elite 101 Chatbot! Your age is {age}.');
 
+
+# The menu() function display four options to choose
 def menu():
     print('\nHere are the choices you can take.')
     
@@ -17,7 +24,7 @@ def menu():
     print(' 3. Rock, Paper, Scissors')
     print(' 4. Exit Conversation')
 
-
+# This function is to let the user pick which options they want from numbers 1-4
 def choose_option():
     pick_choice = int(input("\nSo, how many I help you for today? "))
     if(pick_choice == 1):
@@ -36,6 +43,11 @@ def choose_option():
         print('Please choose a number between 1-4.\n')
         choose_option();
 
+'''
+The order_Groceries() function has the user to pick which item they
+can order. If there is an item that doesn't exist, Chatbot will
+say 'it's not available' and ask the user to enter again.
+'''
 def order_Groceries():
     groceries = ['Bread', 'Apple', 'Banana', 'Chicken', 'Beef', 'Milk']
     list_of_groceries = []
@@ -57,6 +69,7 @@ def order_Groceries():
     print(f'\nThe items you added in the list:\n{list_of_groceries}\n')
     back_or_out();
 
+# Tells a story based on the story the user chose.
 def short_story():
     print('\tStories')
     print('1. The Tree of Life by Gail Berry')
@@ -144,6 +157,7 @@ def short_story():
 
     back_or_out();
 
+# Chatbot plays a round of Rock, Paper and Scissors with you
 def play_RPS():
     print('Let us play Rock, Paper and Scissors!')
     user_RPS = input('(\'R\' = rock) -- (\'P\' = Paper) -- (\'S\' = Scissors)\nWhat do you choose? ').upper()
@@ -164,6 +178,11 @@ def play_RPS():
     
     back_or_out();
 
+'''
+At the end of every activity, Chatbot will ask you if you want to
+head back to the main menu and look up for another activity? or exit
+the conversation
+'''
 def back_or_out():
     user_command = input('Do you want to go back to the main \'menu\' or do you want to \'exit\' Chatbot? ').lower()
 
@@ -180,18 +199,23 @@ def back_or_out():
         back_or_out()
 
 
-
+'''
+exit_convers() function runs when you typed '4' in the choose_option()
+function or when you're done with the activity and want to exit out.
+Chatbot will say thanks and sends a farewell message to you
+'''
 def exit_convers():
     print('Thanks for using Chatbot! I apperciate it!')
-    print(f"Farewell {name}!")
+    print(f"Farewell {name}! Here's to another {age} years of learning and fun!")
     exit()
 
 
 # -------Main Function-------
 
-def main_function():
+def run_Chatbot():
     welcome();
     menu();
     choose_option();
 
-main_function();
+# This one functio at the bottom fun the entire chatbot program.
+run_Chatbot();
