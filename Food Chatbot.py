@@ -45,7 +45,7 @@ def options():
 
     if(op_choice == '1'):
         print('\n')
-        #order_food()
+        order_food()
     elif (op_choice == '2'):
         print('\n')
         #food_help()
@@ -60,7 +60,15 @@ def options():
         options()
 
 
+def order_food():
+    food_items = ["Fries", "Hamburger", "Cheeseburger", "Tenders", "Salad"]
+    drink_items = ["Water", "Coke", "Pepsi", "Lemonade"]
+    print(f'{food_items}\n{drink_items}\n')
+    
 
+    order = input("What would you like to order? Press s to stop.\n")
+
+# Option 4 - Close application
 def close_app():
     print('Thank you for using the Deli Deliver App!')
     #print(f'Have a good day, {name} ({age})')
