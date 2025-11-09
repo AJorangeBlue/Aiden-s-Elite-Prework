@@ -37,8 +37,8 @@ def options():
     print("*--------------------------------*")
     print('| 1. Order Food                  |')
     print('| 2. My food hasn\'t arrived yet  |')
-    print('| 3. Checkout                    |')
-    print('| 4. Close App.                  |')
+    #print('| 3. Checkout                    |')
+    print('| 3. Close App.                  |')
     print("*--------------------------------*\n")
 
     op_choice = input('(Choose 1-4) How may I help you? ')
@@ -49,10 +49,10 @@ def options():
     elif (op_choice == '2'):
         print('\n')
         #food_help()
-    elif (op_choice == '3'):
-        print('\n')
+    #elif (op_choice == '3'):
+        #print('\n')
         #check_out()
-    elif (op_choice == '4'):
+    elif (op_choice == '3'):
         print('\n')
         close_app()
     else:
@@ -61,18 +61,62 @@ def options():
 
 
 def order_food():
-    food_items = ["Fries", "Hamburger", "Cheeseburger", "Tenders", "Salad"]
-    drink_items = ["Water", "Coke", "Pepsi", "Lemonade"]
-    print(f'{food_items}\n{drink_items}\n')
+    food_items = ["fries", "hamburger", "cheeseburger", "tenders", "salad"]
+    drink_items = ["water", "coke", "pepsi", "lemonade", "apple juice"]
+
+    global a
+    a = "-"
+    
+    print("\033[33mFood Menu\033[0m")
+    print("*" +str(48 * a)+ "*")
+    print(f'| Fries  Hamburger  Cheeseburger  tenders  Salad |')
+    print(f'| Water   Coke   Pepsi   Lemonade   Apple Juice  |')
+    print("*" +str(48 * a)+ "*")
     
 
-    order = input("What would you like to order? Press s to stop.\n")
+    order = input("\nWhat would you like to order? Press s to stop.\n").lower()
+    orderUP(order, food_items, drink_items)
+    
+
+    credit_cards = ["Visa", "Chase", "Mastercard", "Capital", "Wells"]
+    print(credit_cards)
+    pay_with = input("What do you want to pay with? ").capitalize()
+
+    while pay_with not in credit_cards:
+        print('\033[31mThat is invalid, try again!\033[0m')
+        pay_with = input("What do you want to pay with? ").capitalize()
+    
+    print('\nCard Accepted!')
+    print('Your order will arrive later today.')
+
+
+
+def orderUP(order, food_items, drink_items):
+    your_items = []
+    cost = 0
+
+    while order != 's':
+        if order in food_items or order in drink_items:
+            your_items.append(order)
+            print(f'\033[32m{order} added!\033[0m')
+            cost += 1 # Assumption of the cost
+            order = input("\nWhat else? Press s to stop.\n").lower()
+        else:
+            print('That does not exist!')
+            order = input("\nOrder Again. Press s to stop.\n").lower()
+    cost += (cost * 0.15)
+
+    print("*" +str(25 * a)+ "*")
+    print(f'Here is your order: {your_items}')
+    print(f'Total: ${cost}\n')
+
 
 # Option 4 - Close application
 def close_app():
     print('Thank you for using the Deli Deliver App!')
     #print(f'Have a good day, {name} ({age})')
     exit()
+
 
 
 
