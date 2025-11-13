@@ -37,7 +37,6 @@ def options():
     print("*--------------------------------*")
     print('| 1. Order Food                  |')
     print('| 2. My food hasn\'t arrived yet  |')
-    #print('| 3. Checkout                    |')
     print('| 3. Close App.                  |')
     print("*--------------------------------*\n")
 
@@ -48,10 +47,7 @@ def options():
         order_food()
     elif (op_choice == '2'):
         print('\n')
-        #food_help()
-    #elif (op_choice == '3'):
-        #print('\n')
-        #check_out()
+        food_help()
     elif (op_choice == '3'):
         print('\n')
         close_app()
@@ -60,6 +56,7 @@ def options():
         options()
 
 
+# Option 1 - The user can order their food
 def order_food():
     food_items = ["fries", "hamburger", "cheeseburger", "tenders", "salad"]
     drink_items = ["water", "coke", "pepsi", "lemonade", "apple juice"]
@@ -69,7 +66,7 @@ def order_food():
     
     print("\033[33mFood Menu\033[0m")
     print("*" +str(48 * a)+ "*")
-    print(f'| Fries  Hamburger  Cheeseburger  tenders  Salad |')
+    print(f'| Fries  Hamburger  Cheeseburger  Tenders  Salad |')
     print(f'| Water   Coke   Pepsi   Lemonade   Apple Juice  |')
     print("*" +str(48 * a)+ "*")
     
@@ -90,7 +87,29 @@ def order_food():
     print('Your order will arrive later today.')
 
 
+#Option 2 - The customer's food hasn't arrived yet. Help them
+#W3Schools' help with .isdigit()
+def food_help():
+    custom_ID = input("Please enter the order ID in 4 digits: ")
+    if len(custom_ID) !=4 or not custom_ID.isdigit():
+        print('\033[31mError! Invalid ID!\n\033[0m')
+        food_help()
+    else:
+        check_ID(custom_ID)
 
+
+# Part of Option 2 - It checks if the customer's ID is Valid
+def check_ID(custom_ID):
+    valid_IDs = ["1234", "5678", "0001", "9995", "2468", "0369"]
+    if custom_ID in valid_IDs:
+        print("\033[32mWe recived your order, and now we\'re going to deliver it.\033[0m")
+        print("\033[32mYour order should arrived in <10 minutes.\033[0m")
+    else:
+        print("\033[33mSorry, that\'s not the correct ID\033[0m")
+        food_help()
+
+
+# Part of Option 1 - It check the food items in the menu & sums up the costs
 def orderUP(order, food_items, drink_items):
     your_items = []
     cost = 0
@@ -111,16 +130,16 @@ def orderUP(order, food_items, drink_items):
     print(f'Total: ${cost}\n')
 
 
-# Option 4 - Close application
+# Option 3 - Close application
 def close_app():
     print('Thank you for using the Deli Deliver App!')
-    #print(f'Have a good day, {name} ({age})')
+    print(f'Have a good day, {name} ({age})')
     exit()
 
 
 
 
 #------Program starts below--------
-#welcome_Page()
+welcome_Page()
 options()
 
